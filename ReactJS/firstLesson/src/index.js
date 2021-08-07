@@ -13,7 +13,7 @@ const App = () => {
                     <div className="col">
                         <Collapse href="collapseExample1">
                             <Card
-                                cardTitle="Card Title 1"
+
                                 cardText="Lorem Ipsum Text 1"
                                 updatedTime="Last Updated 1 min ago"
                                 image="https://picsum.photos/id/1/200/300"
@@ -33,7 +33,7 @@ const App = () => {
                     <div className="col">
                         <Collapse href="collapseExample3">
                             <Card
-                                cardTitle="Card Title 3"
+
                                 cardText="Lorem Ipsum Text 3"
                                 updatedTime="Last Updated 3 min ago"
                                 image="https://picsum.photos/id/3/200/300"
