@@ -1,27 +1,34 @@
 import React from 'react';
 
-class MovieList extends React.Component {
+const MovieList = (props) => {
 
-    render() {
+    /*  function handleClick(e) {
+         //console.log('button click');
+        console.log(e);
+     } */
 
-        return (
-            <div className="row">
-                <div className="col-lg-4">
+    return (
+        <div className="row">
+
+            {props.movies.map((movie) => (
+
+                <div className="col-lg-4" key={movie.id}>
                     <div className="card mb-4 shadow-sm">
-                        <img src="https://image.tmdb.org/t/p/w220_and_h330_face/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg" className="card-img-top" alt="Sample Movie" />
+                        <img src={movie.imageURL} className="card-img-top" alt="Sample Movie" />
                         <div className="card-body">
-                            <h5 className="card-title">Sample Movie</h5>
-                            <p className="card-text">Sample Movie Description</p>
+                            <h5 className="card-title">{movie.name}</h5>
+                            <p className="card-text">{movie.overview}</p>
                             <div className="d-flex justify-content-between align-items-center">
-                                <button type="button" className="btn btn-md btn-outline-danger">Delete</button>
-                                <h2><span className="label label-default">9.0</span></h2>
+                                <button type="button" className="btn btn-md btn-outline-danger" onClick={(event) => props.deleteMovieProp(movie)}>Delete</button>
+                                <h2><span className="label label-default">{movie.rating}</span></h2>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
+            ))}
+
+        </div>
+    )
 }
 
 

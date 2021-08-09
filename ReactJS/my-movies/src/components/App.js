@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+
 import MovieList from './MovieList';
 
 
@@ -19,7 +19,7 @@ class App extends React.Component {
                 "name": "Interstellar",
                 "rating": 6.8,
                 "overviev": "This is a wider card widh supporting text below as a natural lead-in to addiional content.",
-                "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/gEU2QniE6E77NI6lCU6Mx1NBvIx.jpg"
+                "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
             },
             {
                 "id": 3,
@@ -31,16 +31,32 @@ class App extends React.Component {
         ]
     }
 
+    deleteMovie = (movie) => {
+        const newMovieList = this.state.movies.filter(
+            m => m.id !== movie.id
+        );
+
+        this.setState({
+            movies: newMovieList
+        })
+    }
+
+
+
     render() {
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <SearchBar />
+
                     </div>
                 </div>
 
-                <MovieList />
+                <MovieList
+                    movies={this.state.movies}
+                    deleteMovieProp={this.deleteMovie}
+                />
+
             </div>
         )
     }
