@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SearchBar from './SearchBar'
 import MovieList from './MovieList';
 
 
@@ -23,12 +23,35 @@ class App extends React.Component {
             },
             {
                 "id": 3,
+                "name": "Rogue",
+                "rating": 7.4,
+                "overviev": "This is a wider card widh supporting text below as a natural lead-in to addiional content.",
+                "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/uOw5JD8IlD546feZ6oxbIjvN66P.jpg"
+            },
+            {
+                "id": 4,
                 "name": "Arrow",
                 "rating": 7.9,
                 "overviev": "This is a wider card widh supporting text below as a natural lead-in to addiional content.",
                 "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg"
+            },
+            {
+                "id": 5,
+                "name": "Project Power",
+                "rating": 6.7,
+                "overviev": "This is a wider card widh supporting text below as a natural lead-in to addiional content.",
+                "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/TnOeov4w0sTtV2gqICqIxVi74V.jpg"
+            },
+            {
+                "id": 6,
+                "name": "Superman",
+                "rating": 7.6,
+                "overviev": "This is a wider card widh supporting text below as a natural lead-in to addiional content.",
+                "imageURL": "https://image.tmdb.org/t/p/w220_and_h330_face/6Bbq8qQWpoApLZYWFFAuZ1r2gFw.jpg"
             }
-        ]
+        ],
+
+        searchQuery: ""
     }
 
     deleteMovie = (movie) => {
@@ -36,24 +59,39 @@ class App extends React.Component {
             m => m.id !== movie.id
         );
 
-        this.setState({
+        /* this.setState({
             movies: newMovieList
-        })
+        }) */
+
+        this.setState(state => ({
+            movies: newMovieList
+        }))
+
     }
 
-
+    searchMovie = (event) => {
+        //console.log(event.target.value)
+        this.setState({ searchQuery: event.target.value })
+    }
 
     render() {
+
+        let filteredMovies = this.state.movies.filter(
+            (movie) => {
+                return movie.name.toLocaleLowerCase().indexOf(this.state.searchQuery.toLocaleLowerCase()) !== -1
+            }
+        )
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-
+                        <SearchBar searchMovieProp={this.searchMovie} />
                     </div>
                 </div>
 
                 <MovieList
-                    movies={this.state.movies}
+                    movies={filteredMovies}
                     deleteMovieProp={this.deleteMovie}
                 />
 
