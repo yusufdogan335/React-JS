@@ -8,12 +8,12 @@ function App() {
       <Navbar title="User App" />
       <hr />
       <User
-        name="John Doe"
+        name="Janice Martin"
         salary="5000"
         department="IT"
       />
       <User
-        name="Jane Doe"
+        name="Hadley Marrow"
         salary="6500"
         department="Engineer"
       />
