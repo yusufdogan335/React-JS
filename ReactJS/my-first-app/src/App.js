@@ -5,28 +5,7 @@ import Users from './components/Users';
 
 class App extends Component {
 
-  state = {
-    users: [
-      {
-        id: 1,
-        name: "Janice Martin",
-        salary: "5000",
-        department: "IT"
-      },
-      {
-        id: 2,
-        name: "Hadley Marrow",
-        salary: "4000",
-        department: "Marketing"
-      },
-      {
-        id: 3,
-        name: "John Doe",
-        salary: "6500",
-        department: "Engineering"
-      }
-    ]
-  }
+
 
   deleteUser = (id) => {
     this.setState({
