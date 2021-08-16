@@ -23,9 +23,8 @@ class User extends Component {
     }
 
     onDeleteUser = (e) => {
-        const { id, deleteUser } = this.props;
-
-        deleteUser(id);
+        //const { id } = this.props;
+        // Consumer Dispatch
     }
 
     render() {
@@ -58,7 +57,6 @@ User.propTypes = {
     name: PropTypes.string.isRequired,
     salary: PropTypes.string.isRequired,
     department: PropTypes.string.isRequired,
-    deleteUser: PropTypes.func.isRequired
 }
 
 export default User;
