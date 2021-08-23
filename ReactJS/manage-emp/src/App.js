@@ -1,5 +1,5 @@
 import EmployeeList from "./components/EmployeeList";
-import EmployeeContextProvider from "./components/contexts/EmployeeContext";
+import EmployeeContextProvider from "./contexts/EmployeeContext";
 
 function App() {
   return (

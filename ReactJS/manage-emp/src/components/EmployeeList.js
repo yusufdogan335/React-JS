@@ -1,6 +1,6 @@
 import Employee from './Employee';
 import { useContext } from 'react';
-import { EmployeeContext } from './contexts/EmployeeContext';
+import { EmployeeContext } from '../contexts/EmployeeContext';
 
 
 const EmployeeList = () => {
