@@ -6,10 +6,20 @@ const AddForm = () => {
 
     const { addEmployee } = useContext(EmployeeContext);
 
-    const [name, setName] = useState("");
+    /* const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
+    const [phone, setPhone] = useState(""); */
+
+    const [newEmployee, setNewEmployee] = useState({
+        name: "", email: "", address: "", phone: ""
+    })
+
+    const onInputChange = (e) => {
+        setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value })
+    }
+
+    const { name, email, address, phone } = newEmployee;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,8 +32,9 @@ const AddForm = () => {
                 <Form.Control
                     type="text"
                     placeholder="Name *"
+                    name="name"
                     value={name}
-                    onChange={e => setName(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     required
                 />
             </Form.Group>
@@ -32,8 +43,9 @@ const AddForm = () => {
                 <Form.Control
                     type="email"
                     placeholder="E-mail *"
+                    name="email"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     required
                 />
             </Form.Group>
@@ -42,8 +54,9 @@ const AddForm = () => {
                 <Form.Control
                     as="textarea"
                     placeholder="Address *"
+                    name="address"
                     value={address}
-                    onChange={e => setAddress(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     rows={3}
                 />
             </Form.Group>
@@ -52,8 +65,9 @@ const AddForm = () => {
                 <Form.Control
                     type="text"
                     placeholder="Phone *"
+                    name="phone"
                     value={phone}
-                    onChange={e => setPhone(e.target.value)}
+                    onChange={e => onInputChange(e)}
                 />
             </Form.Group>
             <Button variant="success" type="submit" block>
