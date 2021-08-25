@@ -1,6 +1,11 @@
-const Employee = ({ employees }) => {
-    return (
+import { EmployeeContext } from "../contexts/EmployeeContext";
+import { useContext } from "react";
 
+const Employee = ({ employees }) => {
+
+    const { deleteEmployee } = useContext(EmployeeContext);
+
+    return (
         <>
             {
                 employees.map((employee) => (
@@ -10,8 +15,8 @@ const Employee = ({ employees }) => {
                         <td>{employee.address}</td>
                         <td>{employee.phone}</td>
                         <td>
-                            <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <button className="btn text-warning btn-act" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                            <button className="btn text-danger btn-act" onClick={() => deleteEmployee(employee.id)} data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                         </td>
                     </tr>
                 ))
