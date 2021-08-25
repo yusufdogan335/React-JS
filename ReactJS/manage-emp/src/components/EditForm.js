@@ -1,20 +1,34 @@
 import { Form, Button } from 'react-bootstrap';
 import { EmployeeContext } from '../contexts/EmployeeContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
-const EditForm = () => {
+const EditForm = ({ theEmployee }) => {
 
     const { updateEmployee } = useContext(EmployeeContext);
 
+    const employee = theEmployee;
+    const id = employee.id;
 
+    const [name, SetName] = useState(employee.name);
+    const [email, SetEmail] = useState(employee.email);
+    const [address, SetAddress] = useState(employee.address);
+    const [phone, SetPhone] = useState(employee.phone);
+
+    const updatedEmployee = { id, name, email, address, phone };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        updateEmployee(id, updatedEmployee)
+    }
 
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Control
                     type="text"
                     placeholder="Name *"
                     name="name"
+                    value={name}
+                    onChange={(e) => SetName(e.target.value)}
                     required
                 />
             </Form.Group>
@@ -24,6 +38,8 @@ const EditForm = () => {
                     type="email"
                     placeholder="E-mail *"
                     name="email"
+                    value={email}
+                    onChange={(e) => SetEmail(e.target.value)}
                     required
                 />
             </Form.Group>
@@ -33,6 +49,8 @@ const EditForm = () => {
                     as="textarea"
                     placeholder="Address *"
                     name="address"
+                    value={address}
+                    onChange={(e) => SetAddress(e.target.value)}
                     rows={3}
                 />
             </Form.Group>
@@ -42,6 +60,8 @@ const EditForm = () => {
                     type="text"
                     placeholder="Phone *"
                     name="phone"
+                    value={phone}
+                    onChange={(e) => SetPhone(e.target.value)}
                 />
             </Form.Group>
             <Button variant="success" type="submit" block>
