@@ -1,6 +1,6 @@
 import Employee from './Employee';
 import { useContext, useState, useEffect, } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Alert } from 'react-bootstrap';
 import { EmployeeContext } from '../contexts/EmployeeContext';
 import AddForm from './AddForm';
 
@@ -9,13 +9,26 @@ const EmployeeList = () => {
 
     const { employees } = useContext(EmployeeContext);
 
+    const [showAlert, setShowAlert] = useState(false);
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    //const handleShowAlert = () => setShowAlert(true)
+
+    const handleShowAlert = () => {
+        setShowAlert(true);
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+    };
 
     useEffect(() => {
         handleClose();
+        return () => {
+            handleShowAlert();
+        }
     }, [employees])
 
 
@@ -31,6 +44,11 @@ const EmployeeList = () => {
                     </div>
                 </div>
             </div>
+
+            <Alert show={showAlert} variant="success">
+                Employe List Successfully Updated!
+            </Alert>
+
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -43,7 +61,7 @@ const EmployeeList = () => {
                 </thead>
                 <tbody>
                     {
-                        employees.map((employee) => (
+                        employees.sort((a, b) => a.name.localeCompare(b.name)).map((employee) => (
                             <tr key={employee.id}>
                                 <Employee employee={employee} />
                             </tr>
