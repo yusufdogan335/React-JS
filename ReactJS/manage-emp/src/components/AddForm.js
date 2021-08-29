@@ -1,10 +1,10 @@
 import { Form, Button } from 'react-bootstrap';
 import { EmployeeContext } from '../contexts/EmployeeContext';
-import { useContext, useState } from 'react';
+import { useContext, useState, useReducer } from 'react';
 
 const AddForm = () => {
 
-    const { addEmployee } = useContext(EmployeeContext);
+    const { dispatch } = useContext(EmployeeContext);
 
     /* const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,7 +23,12 @@ const AddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addEmployee(name, email, address, phone);
+        /* addEmployee(name, email, address, phone); */
+        dispatch({
+            type: 'add_employee', employee: {
+                name, email, address, phone
+            }
+        })
     }
 
     return (

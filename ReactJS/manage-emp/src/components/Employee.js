@@ -1,5 +1,5 @@
 import { EmployeeContext } from "../contexts/EmployeeContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useReducer } from "react";
 import { Button, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import EditForm from "./EditForm";
 
@@ -15,7 +15,7 @@ const Employee = ({ employee }) => {
         handleClose();
     }, [employee])
 
-    const { deleteEmployee } = useContext(EmployeeContext);
+    const { dispatch } = useContext(EmployeeContext);
 
     return (
         <>
@@ -38,7 +38,7 @@ const Employee = ({ employee }) => {
                             Delete
                         </Tooltip>
                     }>
-                    <button className="btn text-danger btn-act" onClick={() => deleteEmployee(employee.id)} data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
+                    <button className="btn text-danger btn-act" onClick={() => dispatch({ type: 'remove_employee', id: employee.id })} data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
 
 
