@@ -19,15 +19,44 @@ const Animation = posed.div({
 class AddUser extends Component {
 
     state = {
-        visible: true
+        visible: true,
+        name: "",
+        department: "",
+        salary: ""
     }
     changeVisibility = (e) => {
         this.setState({
             visible: !this.state.visible
         })
     }
+
+    /* changeName = (e) => {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    changeDepartment = (e) => {
+        this.setState({
+            department: e.target.value
+        })
+    }
+
+    changeSalary = (e) => {
+        this.setState({
+            salary: e.target.value
+        })
+    }
+ */
+
+    changeInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
-        const { visible } = this.state;
+        const { visible, name, salary, department } = this.state;
         return (
             <div className="col-md-9 mb-4">
                 <button onClick={this.changeVisibility} className="btn btn-dark btn-block mb-2">{visible ? "Hide Form" : "Show Form"}</button>
@@ -46,6 +75,8 @@ class AddUser extends Component {
                                         id="id"
                                         placeholder="Enter Name"
                                         className="form-control"
+                                        value={name}
+                                        onChange={this.changeInput}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -56,6 +87,8 @@ class AddUser extends Component {
                                         id="department"
                                         placeholder="Enter Department"
                                         className="form-control"
+                                        value={department}
+                                        onChange={this.changeInput}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -66,6 +99,8 @@ class AddUser extends Component {
                                         id="salary"
                                         placeholder="Enter Salary"
                                         className="form-control"
+                                        value={salary}
+                                        onChange={this.changeInput}
                                     />
                                 </div>
                                 <button type="submit" className="btn btn-danger btn-block">Add User</button>
